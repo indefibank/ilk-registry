@@ -17,14 +17,14 @@
 
 pragma solidity >=0.5.12;
 
-// This is a nonstandard Dai token (missing name and symbol) used as a fixture for tests
-contract UnDai {
+// This is a nonstandard Stbl token (missing name and symbol) used as a fixture for tests
+contract UnStbl {
     // --- Auth ---
     mapping (address => uint) public wards;
     function rely(address guy) external auth { wards[guy] = 1; }
     function deny(address guy) external auth { wards[guy] = 0; }
     modifier auth {
-        require(wards[msg.sender] == 1, "Dai/not-authorized");
+        require(wards[msg.sender] == 1, "Stbl/not-authorized");
         _;
     }
 
@@ -72,9 +72,9 @@ contract UnDai {
     function transferFrom(address src, address dst, uint wad)
         public returns (bool)
     {
-        require(balanceOf[src] >= wad, "Dai/insufficient-balance");
+        require(balanceOf[src] >= wad, "Stbl/insufficient-balance");
         if (src != msg.sender && allowance[src][msg.sender] != uint(-1)) {
-            require(allowance[src][msg.sender] >= wad, "Dai/insufficient-allowance");
+            require(allowance[src][msg.sender] >= wad, "Stbl/insufficient-allowance");
             allowance[src][msg.sender] = sub(allowance[src][msg.sender], wad);
         }
         balanceOf[src] = sub(balanceOf[src], wad);
@@ -88,9 +88,9 @@ contract UnDai {
         emit Transfer(address(0), usr, wad);
     }
     function burn(address usr, uint wad) external {
-        require(balanceOf[usr] >= wad, "Dai/insufficient-balance");
+        require(balanceOf[usr] >= wad, "Stbl/insufficient-balance");
         if (usr != msg.sender && allowance[usr][msg.sender] != uint(-1)) {
-            require(allowance[usr][msg.sender] >= wad, "Dai/insufficient-allowance");
+            require(allowance[usr][msg.sender] >= wad, "Stbl/insufficient-allowance");
             allowance[usr][msg.sender] = sub(allowance[usr][msg.sender], wad);
         }
         balanceOf[usr] = sub(balanceOf[usr], wad);
@@ -130,10 +130,10 @@ contract UnDai {
                                      allowed))
         ));
 
-        require(holder != address(0), "Dai/invalid-address-0");
-        require(holder == ecrecover(digest, v, r, s), "Dai/invalid-permit");
-        require(expiry == 0 || now <= expiry, "Dai/permit-expired");
-        require(nonce == nonces[holder]++, "Dai/invalid-nonce");
+        require(holder != address(0), "Stbl/invalid-address-0");
+        require(holder == ecrecover(digest, v, r, s), "Stbl/invalid-permit");
+        require(expiry == 0 || now <= expiry, "Stbl/permit-expired");
+        require(nonce == nonces[holder]++, "Stbl/invalid-nonce");
         uint wad = allowed ? uint(-1) : 0;
         allowance[holder][spender] = wad;
         emit Approval(holder, spender, wad);
