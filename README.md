@@ -1,15 +1,11 @@
 # Ilk Registry
-![Build Status](https://github.com/makerdao/ilk-registry/actions/workflows/.github/workflows/tests.yaml/badge.svg?branch=master)
+![Build Status](https://github.com/indefibank/ilk-registry/actions/workflows/.github/workflows/tests.yaml/badge.svg?branch=master)
 
-A publicly-modifiable registry of `ilk`'s in the Dai Stablecoin System.
+A publicly-modifiable registry of `ilk`'s in the Stbl Stablecoin System.
 
 ## Public addresses
 
-Kovan: [0xc3F42deABc0C506e8Ae9356F2d4fc1505196DCDB](https://kovan.etherscan.io/address/0xc3F42deABc0C506e8Ae9356F2d4fc1505196DCDB)
-
-Goerli: [0x525FaC4CEc48a4eF2FBb0A72355B6255f8D5f79e](https://goerli.etherscan.io/address/0x525FaC4CEc48a4eF2FBb0A72355B6255f8D5f79e)
-
-Mainnet: [0x5a464C28D19848f44199D003BeF5ecc87d090F87](https://etherscan.io/address/0x5a464C28D19848f44199D003BeF5ecc87d090F87)
+[//]: # (Mainnet: [0x5a464C28D19848f44199D003BeF5ecc87d090F87]&#40;https://etherscan.io/address/0x5a464C28D19848f44199D003BeF5ecc87d090F87&#41;)
 
 ## Requirements
 
@@ -51,7 +47,7 @@ Useful for external contracts or web frontends which need to iterate over the on
     * `name(bytes32 ilk)`: the name of the token (if available) as `string`
     * `symbol(bytes32 ilk)`: the token symbol (if available) as `string`
 
-* `auth` functions (available to MakerDAO governance)
+* `auth` functions (available to governance)
 
     * `file(bytes32 what, address)`: Update core contract values
     * `file(bytes32 ilk, bytes32 what, address)`: Update ilk data values
